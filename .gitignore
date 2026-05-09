@@ -1,0 +1,25 @@
+# البيئة
+venv/
+
+# البيانات (كبيرة جداً للرفع)
+data/processed/
+data/raw/
+data/labeled/
+
+# الـ logs
+logs/
+*.log
+*.pid
+
+# النماذج (سنرفعها لاحقاً بشكل منفصل)
+models/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# نظام
+.DS_Store
+Thumbs.db
