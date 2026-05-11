@@ -17,14 +17,22 @@ def get_output_file():
 
 # آخر سجل تمت معالجته
 last_processed = 0
+last_log_size  = 0
 
 def collect():
-    global last_processed
+    global last_processed, last_log_size
 
     df = parse_conn_log(CONN_LOG)
 
     if df.empty:
         return
+
+    # كشف إعادة تشغيل Zeek (log بدأ من جديد)
+    current_size = len(df)
+    if current_size < last_log_size:
+        print(f"[{datetime.now().strftime('%H:%M:%S')}] 🔄 Zeek أعاد التشغيل — إعادة ضبط المؤشر")
+        last_processed = 0
+    last_log_size = current_size
 
     # فقط السجلات الجديدة
     new_df = df[df["ts"] > last_processed]
@@ -47,9 +55,12 @@ def collect():
     # تحديث آخر سجل
     last_processed = df["ts"].max()
 
+    # حساب المجموع الكلي
+    total = sum(1 for _ in open(output_file))
+
     print(f"[{datetime.now().strftime('%H:%M:%S')}] "
           f"✅ حفظ {len(features)} سجل جديد | "
-          f"المجموع: {sum(1 for _ in open(output_file))} سطر")
+          f"المجموع: {total} سطر")
 
 if __name__ == "__main__":
     print("🚀 بدأ جمع البيانات...")
