@@ -15,9 +15,22 @@ def get_output_file():
     today = datetime.now().strftime("%Y-%m-%d")
     return OUTPUT_DIR / f"baseline_{today}.csv"
 
-# آخر سجل تمت معالجته
-last_processed = 0
-last_log_size  = 0
+STATE_FILE = Path("/home/mtech/zeek-ids/logs/collector_state.json")
+
+def load_state():
+    if STATE_FILE.exists():
+        import json
+        with open(STATE_FILE) as f:
+            s = json.load(f)
+            return s.get("last_processed", 0), s.get("last_log_size", 0)
+    return 0, 0
+
+def save_state(last_processed, last_log_size):
+    import json
+    with open(STATE_FILE, "w") as f:
+        json.dump({"last_processed": last_processed, "last_log_size": last_log_size}, f)
+
+last_processed, last_log_size = load_state()
 
 def collect():
     global last_processed, last_log_size
@@ -54,6 +67,7 @@ def collect():
 
     # تحديث آخر سجل
     last_processed = df["ts"].max()
+    save_state(last_processed, last_log_size)
 
     # حساب المجموع الكلي
     total = sum(1 for _ in open(output_file))
