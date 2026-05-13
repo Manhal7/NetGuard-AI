@@ -76,7 +76,7 @@ def browse(site=None):
     url = site or random.choice(BROWSE_SITES)
     try:
         result = subprocess.run(
-            ["curl", "-s", "-o", "/dev/null", "-w", "%{http_code}",
+            ["curl", "-s", "-o", "/dev/null", "-w", "%{http_code}","--limit-rate","500k"
              "--max-time", "10", "--connect-timeout", "5",
              "-A", "Mozilla/5.0 (compatible; NetGuard-Sim/1.0)",
              url],
