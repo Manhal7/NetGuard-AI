@@ -1,0 +1,71 @@
+{
+  "date": "2026-05-13",
+  "total_records": 7404,
+  "avg_score": 70.0,
+  "checks": [
+    {
+      "metric": "الكمية اليومية",
+      "value": 718,
+      "unit": "سجل",
+      "status": "⚠️  مقبول",
+      "score": 60,
+      "target": 2000
+    },
+    {
+      "metric": "القيم المفقودة",
+      "value": 5.48,
+      "unit": "%",
+      "status": "⚠️  مقبول",
+      "score": 60,
+      "target": 10.0
+    },
+    {
+      "metric": "التكرار",
+      "value": 54.63,
+      "unit": "%",
+      "status": "❌ تكرار عالٍ",
+      "score": 20,
+      "target": 5.0
+    },
+    {
+      "metric": "تنوع البروتوكولات",
+      "value": 3,
+      "unit": "بروتوكولات (TCP, UDP, ICMP)",
+      "status": "✅ ممتاز",
+      "score": 100,
+      "target": 2
+    },
+    {
+      "metric": "تنوع الـ IPs",
+      "value": 104,
+      "unit": "IP مختلف",
+      "status": "✅ ممتاز",
+      "score": 100,
+      "target": 20
+    },
+    {
+      "metric": "أكبر فجوة زمنية",
+      "value": 2104.7,
+      "unit": "دقيقة",
+      "status": "❌ فجوات كبيرة",
+      "score": 20,
+      "target": 60
+    },
+    {
+      "metric": "تنوع الأوقات",
+      "value": 24,
+      "unit": "ساعة مختلفة",
+      "status": "✅ ممتاز",
+      "score": 100,
+      "target": 12
+    },
+    {
+      "metric": "الحركة الخارجية",
+      "value": 70.1,
+      "unit": "%",
+      "status": "✅ ممتاز",
+      "score": 100,
+      "target": "20-80"
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "file": "baseline_2026-05-12.csv",
+  "date": "2026-05-13 06:19:35",
+  "checks": [
+    {
+      "check": "file_exists",
+      "status": "pass",
+      "detail": "447.3 KB"
+    },
+    {
+      "check": "required_columns",
+      "status": "pass",
+      "detail": "جميع الأعمدة الـ 12 موجودة"
+    },
+    {
+      "check": "minimum_records",
+      "status": "pass",
+      "detail": "3625 سجل ✅",
+      "value": 3625
+    },
+    {
+      "check": "missing_values",
+      "status": "pass",
+      "detail": "نسبة القيم المفقودة: 0.00% ✅",
+      "breakdown": {},
+      "value": 0.0
+    },
+    {
+      "check": "duplicates",
+      "status": "pass",
+      "detail": "0 سجل مكرر (0.00%) ✅",
+      "value": 0
+    },
+    {
+      "check": "time_gaps",
+      "status": "pass",
+      "detail": "لا فجوات > 60 دقيقة ✅",
+      "gaps": []
+    },
+    {
+      "check": "timestamp_order",
+      "status": "warn",
+      "detail": "242 timestamp غير مرتب — قد يؤثر على Window Engine",
+      "value": 242
+    },
+    {
+      "check": "protocol_variety",
+      "status": "pass",
+      "detail": "TCP:200 | UDP:2286 | ICMP:863 ✅",
+      "counts": {
+        "TCP": 200,
+        "UDP": 2286,
+        "ICMP": 863
+      }
+    },
+    {
+      "check": "ip_variety",
+      "status": "pass",
+      "detail": "56 IP مختلف ✅",
+      "value": 56
+    },
+    {
+      "check": "zero_bytes",
+      "status": "pass",
+      "detail": "53.3% سجلات بدون bytes ✅",
+      "value": 53.3
+    },
+    {
+      "check": "sudden_drop",
+      "status": "warn",
+      "detail": "1 فترة انخفاض مفاجئ (< 10% من المتوسط 25 سجل/10دقائق)",
+      "value": 1
+    }
+  ],
+  "score": 9,
+  "status": "pass",
+  "records": 3625,
+  "passed": 8,
+  "warned": 2,
+  "failed": 0
+}
