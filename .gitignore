@@ -23,3 +23,13 @@ __pycache__/
 # نظام
 .DS_Store
 Thumbs.db
+
+# CICIDS2017 (320MB — لا ترفع)
+data/cicids2017/
+
+# Windows + Reports (بيانات محلية)
+data/windows/
+data/reports/
+
+# Integrity reports
+data/integrity_*.json
