@@ -37,12 +37,37 @@ def get_output_file():
 STATE_FILE = Path("/home/mtech/zeek-ids/logs/collector_state.json")
 
 def load_state():
+    """
+    يقرأ آخر ts معالج من مصدرين:
+    1. state.json (سريع)
+    2. CSV اليوم (أكثر موثوقية — يمنع التكرار بعد إعادة التشغيل)
+    يأخذ الأعلى منهما
+    """
+    import json
+
+    state_ts = 0
     if STATE_FILE.exists():
-        import json
         with open(STATE_FILE) as f:
             s = json.load(f)
-            return s.get("last_processed", 0), s.get("last_log_size", 0)
-    return 0, 0
+            state_ts = s.get("last_processed", 0)
+
+    # تحقق من الـ CSV اليومي
+    csv_ts = 0
+    output_file = get_output_file()
+    if output_file.exists():
+        try:
+            df_existing = pd.read_csv(output_file, usecols=["ts"])
+            if not df_existing.empty:
+                csv_ts = float(df_existing["ts"].max())
+        except Exception:
+            pass
+
+    last_ts = max(state_ts, csv_ts)
+    if csv_ts > state_ts:
+        print(f"[{datetime.now().strftime('%H:%M:%S')}] "
+              f"🔄 مزامنة من CSV: last_ts={csv_ts:.0f}")
+
+    return last_ts, 0
 
 def save_state(last_processed, last_log_size):
     import json
