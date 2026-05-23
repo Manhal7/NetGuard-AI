@@ -111,7 +111,7 @@ def collect():
         last_processed = df["ts"].max()
         save_state(last_processed, last_log_size)
         return
-
+    features = features.drop_duplicates().reset_index(drop=True)
     # حفظ في CSV يومي
     output_file = get_output_file()
     features.to_csv(
